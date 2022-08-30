@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import './form.css'
+import axios from 'axios';
+
 const Form = ()=> {
     const [player, setPlayer] = useState({
         lastName: "",
@@ -8,6 +10,7 @@ const Form = ()=> {
         position: "",
         clubs: ""
     })
+    const [message, setMessage] = useState("")
 const handleChange =(e)=>{
     const { name, value } = e.target;
     setPlayer(prevState => ({
@@ -18,12 +21,21 @@ const handleChange =(e)=>{
 }
 const handleSubmit = (e) => {
     e.preventDefault()
-  
     setPlayer(prevState => ({
         ...prevState,
         clubs: player.clubs.split(',')
     }))
-}
+    axios
+      .post('http://localhost:3001/', {player})
+      .then(res => {
+        console.log(res.data)
+      })
+      .catch(e => {
+        setMessage(`Erreur lors de la création : ${e.message}`)
+        console.log(message)
+      })
+  }
+
 
     return(
         <form className="new-player-form">
