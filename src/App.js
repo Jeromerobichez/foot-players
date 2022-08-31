@@ -6,7 +6,7 @@ import Form from './components/form';
 import AllPlayersDisplay from './components/allPlayersDisplay';
 
 function App() {
-  const [playersList, setPlayersList] = useState('')
+  const [playersList, setPlayersList] = useState([])
   const [error, setError]= useState('')
 
   useEffect(() => {
@@ -21,6 +21,8 @@ function App() {
     })
   
   }, []);
+
+  console.log('playersList in app', playersList)
   return (
     <div className="App">
       <h1>Football players collection </h1>
