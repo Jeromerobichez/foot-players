@@ -26,7 +26,7 @@ const handleSubmit = (e) => {
         clubs: player.clubs.split(',')
     }))
     axios
-      .post('http://localhost:3001/', {player})
+      .post('http://localhost:5000/', {player})
       .then(res => {
         console.log(res.data)
       })
