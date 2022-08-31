@@ -9,7 +9,11 @@ const OnePlayerCard = ({data}) => {
         </div>
         <div>{data.birthDate}</div>
         <div>{data.position}</div>
-       {/*  <div>{data.clubs.map((e, i)=> e)}</div> */}
+        <ul>
+            Clubs :
+       {data.clubs.map((club, i)=> 
+       <li>{club}</li>)}
+       </ul>
 
     </div>
  )
