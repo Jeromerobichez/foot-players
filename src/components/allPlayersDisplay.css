@@ -1,5 +1,6 @@
 .card-displayer {
-    display: flex;
-    justify-content: space-around;
-    margin: 20px 0
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    grid-gap: 10px;
+
 }

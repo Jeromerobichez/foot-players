@@ -2,14 +2,15 @@ import { useState } from 'react';
 import './form.css'
 import axios from 'axios';
 
-const Form = ()=> {
-    const [player, setPlayer] = useState({
-        lastName: "",
-        firstName: "",
-        birthDate: "",
-        position: "",
-        clubs: ""
-    })
+const defaultPlayer = {
+    lastName: "",
+    firstName: "",
+    birthDate: "",
+    position: "",
+    clubs: ""
+}
+const Form = ({getPlayers})=> {
+    const [player, setPlayer] = useState(defaultPlayer)
     const [message, setMessage] = useState("")
 const handleChange =(e)=>{
     const { name, value } = e.target;
@@ -21,19 +22,23 @@ const handleChange =(e)=>{
 }
 const handleSubmit = (e) => {
     e.preventDefault()
-    setPlayer(prevState => ({
-        ...prevState,
-        clubs: player.clubs.split(',')
-    }))
+    
+    const playerToSend = player
+    
+    const clubsArray = player.clubs.split(',')
+    playerToSend.clubs = clubsArray
+
     axios
       .post('http://localhost:5000/', {player})
       .then(res => {
         console.log(res.data)
+        getPlayers()
       })
       .catch(e => {
         setMessage(`Erreur lors de la création : ${e.message}`)
         console.log(message)
       })
+      setPlayer(defaultPlayer)
   }
 
 
@@ -45,6 +50,7 @@ const handleSubmit = (e) => {
             name="lastName"
             type="text" 
             placeholder="nom" 
+            value={player.lastName} 
             onChange={handleChange} />
         </label>
         <label className="form-label" id="name">Prenom
@@ -53,6 +59,7 @@ const handleSubmit = (e) => {
             name="firstName"
             type="text"
             placeholder="prenom" 
+            value={player.firstName} 
             onChange={handleChange} />
         </label>
         <label className="form-label" id="name">Date de naissance
@@ -61,6 +68,7 @@ const handleSubmit = (e) => {
             name="birthDate"
             type="text"
             placeholder="date de naissance" 
+            value={player.birthDate} 
             onChange={handleChange}/>
         </label>
         <label className="form-label" id="name">Position
@@ -72,12 +80,13 @@ const handleSubmit = (e) => {
             value={player.position} 
             onChange={handleChange} />
         </label>
-        <label className="form-label" id="name">Clubs
+        <label className="form-label" id="name">Clubs (séparés par une virgule)&nbsp;:
         <input className="form-input"
             id="name"
             name="clubs"
             type="text"
             placeholder="clubs"
+            value={player.clubs} 
             onChange={handleChange} />
         </label>
         <button type="submit"

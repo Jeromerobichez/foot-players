@@ -1,4 +1,9 @@
 .player-card {
     border: 1px solid black;
-    width: 30%;
+
+}
+.close-card {
+    display: flex;
+    justify-content: flex-end;
+   
 }
