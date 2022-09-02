@@ -9,6 +9,15 @@ const defaultPlayer = {
     position: "",
     clubs: ""
 }
+const positions = [
+    "gardien",
+    "défenseur central",
+    "défenseur latéral",
+    "milieu défensif",
+    "milieu offensif",
+    "ailier",
+    "attaquant"
+ ]
 const Form = ({getPlayers})=> {
     const [player, setPlayer] = useState(defaultPlayer)
     const [message, setMessage] = useState("")
@@ -72,13 +81,16 @@ const handleSubmit = (e) => {
             onChange={handleChange}/>
         </label>
         <label className="form-label" id="name">Position
-        <input className="form-input"
+        <select className="form-input"
             id="name"
             name="position"
             type="text"
             placeholder="position"
             value={player.position} 
-            onChange={handleChange} />
+            onChange={handleChange} >
+{positions.map((pos, i)=> 
+<option value={pos}>{pos}</option>)}
+            </select>
         </label>
         <label className="form-label" id="name">Clubs (séparés par une virgule)&nbsp;:
         <input className="form-input"

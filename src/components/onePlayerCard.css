@@ -1,5 +1,6 @@
 .player-card {
     border: 1px solid black;
+    padding: 3px 5px;
 
 }
 .close-card {
