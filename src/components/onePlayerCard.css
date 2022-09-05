@@ -1,10 +1,19 @@
 .player-card {
     border: 1px solid black;
     padding: 3px 5px;
+    text-align: left;
+    width: 60%;
+    background-color: blanchedalmond;;
 
 }
 .close-card {
     display: flex;
     justify-content: flex-end;
    
+}
+ul {
+    border: 1px solid grey;
+}
+.player-li {
+    list-style: none;
 }

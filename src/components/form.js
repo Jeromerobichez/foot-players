@@ -9,16 +9,8 @@ const defaultPlayer = {
     position: "",
     clubs: ""
 }
-const positions = [
-    "gardien",
-    "défenseur central",
-    "défenseur latéral",
-    "milieu défensif",
-    "milieu offensif",
-    "ailier",
-    "attaquant"
- ]
-const Form = ({getPlayers})=> {
+
+const Form = ({getPlayers, positions})=> {
     const [player, setPlayer] = useState(defaultPlayer)
     const [message, setMessage] = useState("")
 const handleChange =(e)=>{
@@ -53,6 +45,7 @@ const handleSubmit = (e) => {
 
     return(
         <form className="new-player-form">
+          <h2>Formulaire de création d'un joueur :</h2>
         <label className="form-label" id="name">Nom
         <input className="form-input"
             id="name"

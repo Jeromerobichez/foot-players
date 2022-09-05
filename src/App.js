@@ -25,12 +25,22 @@ function App() {
   
   }, []);
 
+  const positions = [
+    "gardien",
+    "défenseur central",
+    "défenseur latéral",
+    "milieu défensif",
+    "milieu offensif",
+    "ailier",
+    "attaquant"
+ ]
+
   console.log('playersList in app', playersList)
   return (
     <div className="App">
       <h1>Football players collection </h1>
-      <AllPlayersDisplay playersList={playersList} getPlayers={getPlayers} />
-      <Form getPlayers={getPlayers} />
+      <AllPlayersDisplay playersList={playersList} getPlayers={getPlayers} positions={positions} />
+      <Form getPlayers={getPlayers} positions={positions} />
      
     </div>
   );

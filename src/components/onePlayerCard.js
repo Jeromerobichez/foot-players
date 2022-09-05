@@ -1,6 +1,6 @@
 import './onePlayerCard.css'
 import axios from 'axios'
-const OnePlayerCard = ({data, _id, getPlayers}) => {
+const OnePlayerCard = ({data, _id, getPlayers, filter}) => {
 
     const handleClick = (e) => {
       axios
@@ -14,7 +14,8 @@ const OnePlayerCard = ({data, _id, getPlayers}) => {
       })
     }
  return (
-    <div className="player-card">
+    <div className="player-card"
+    style={{display:  filter !== '' ? (data.position === filter)  ? 'block'  : 'none' : null }}>
         <div>
          <div className='close-card'>
             <span className='close-card-span'
@@ -27,7 +28,7 @@ const OnePlayerCard = ({data, _id, getPlayers}) => {
         <ul>
             Clubs : 
       {data.clubs.map((club, i)=> 
-       <li>{club}</li>)} 
+       <li className='player-li'>{club}</li>)} 
        </ul>
 
     </div>
