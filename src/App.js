@@ -26,6 +26,7 @@ function App() {
   }, []);
 
   const positions = [
+    "",
     "gardien",
     "défenseur central",
     "défenseur latéral",

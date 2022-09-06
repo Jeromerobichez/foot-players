@@ -82,7 +82,7 @@ const handleSubmit = (e) => {
             value={player.position} 
             onChange={handleChange} >
 {positions.map((pos, i)=> 
-<option value={pos}>{pos}</option>)}
+<option value={pos} key={i}>{pos}</option>)}
             </select>
         </label>
         <label className="form-label" id="name">Clubs (séparés par une virgule)&nbsp;:

@@ -1,6 +1,9 @@
 import './onePlayerCard.css'
 import axios from 'axios'
+
 const OnePlayerCard = ({data, _id, getPlayers, filter}) => {
+ 
+   console.log("data", data)
 
     const handleClick = (e) => {
       axios
@@ -13,14 +16,14 @@ const OnePlayerCard = ({data, _id, getPlayers, filter}) => {
        console.log(`Erreur lors de la suppression : ${e.message}`)
       })
     }
+
  return (
-    <div className="player-card"
-    style={{display:  filter !== '' ? (data.position === filter)  ? 'block'  : 'none' : null }}>
+    <div className="player-card">
         <div>
          <div className='close-card'>
             <span className='close-card-span'
             onClick={handleClick}>X</span></div>
-        <div>nom : {data.lastName} </div>
+        <div className="player-card-lastName">nom : {data.lastName} </div>
         <div>prenom : {data.firstName} </div>
         </div>
         <div>{data.birthDate}</div>
@@ -28,7 +31,8 @@ const OnePlayerCard = ({data, _id, getPlayers, filter}) => {
         <ul>
             Clubs : 
       {data.clubs.map((club, i)=> 
-       <li className='player-li'>{club}</li>)} 
+       <li className='player-li'
+       key={i}>{club}</li>)} 
        </ul>
 
     </div>
