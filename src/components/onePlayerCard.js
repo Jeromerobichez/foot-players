@@ -1,7 +1,7 @@
 import './onePlayerCard.css'
 import axios from 'axios'
 
-const OnePlayerCard = ({data, _id, getPlayers, filter}) => {
+const OnePlayerCard = ({data, _id, getPlayers}) => {
  
    console.log("data", data)
 

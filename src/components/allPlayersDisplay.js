@@ -1,6 +1,6 @@
 import './allPlayersDisplay.css'
 import OnePlayerCard from "./onePlayerCard"
-import { useState, useEffect } from 'react'
+import { useState} from 'react'
 
 const initialFilter = {
     position: "",
@@ -8,18 +8,10 @@ const initialFilter = {
     club: ""
 }
 const AllPlayersDisplay = ({playersList, getPlayers, positions}) => {
-    const [filter, setFilter] = useState(initialFilter)
-    const [sentFilter, setSentFilter] = useState({
-        position: "",
-        firstName: "",
-        club: ""
-    })
+    const [filter, setFilter] = useState(initialFilter) // intial filter to avoid the problem of undefined.map when the compo mounts
     const [filteredPlayersList, setFilteredPlayersList] = useState(null)
 
-    useEffect(() => {
-        setFilteredPlayersList(playersList) 
-      
-      }, []);
+// to collect the data to filter 
     const handleFilter = (e) => {
         e.preventDefault()
         const { name, value } = e.target;
@@ -28,19 +20,20 @@ const AllPlayersDisplay = ({playersList, getPlayers, positions}) => {
             [name]: value
         }))
     }
+    // to clear all filters : 
     const resetFilters = () => {
         setFilter(initialFilter)
         setFilteredPlayersList(null) 
     }
+// to display or hide the collection of cards
     const showCollection = () => {
         setFilter(initialFilter)
         filteredPlayersList === null ? setFilteredPlayersList(playersList) : setFilteredPlayersList(null) 
-        
     }
-    let workableList = []
-    const applyFilters = () => {
-        
-        workableList= filter.position !== "" ?(playersList.filter(player => player.player.position === filter.position)) : playersList
+   // to stock the filter in the state and modify the cards which are displayed
+    const applyFilters = (e) => {
+        e.preventDefault()
+        let workableList = filter.position !== "" ?(playersList.filter(player => player.player.position === filter.position)) : playersList
 
         workableList= filter.club !== "" ? (workableList.filter(player => player.player.clubs.includes(filter.club))) : workableList
         setFilteredPlayersList(workableList) 
@@ -48,8 +41,9 @@ const AllPlayersDisplay = ({playersList, getPlayers, positions}) => {
 
     return (
 <>
-<div>filtrer par position : 
-<label className="form-label" id="name">
+
+<form>
+<label className="form-label" id="name">filtrer par position : 
         <select className="form-input"
             id="name"
             name="position"
@@ -61,9 +55,7 @@ const AllPlayersDisplay = ({playersList, getPlayers, positions}) => {
 <option value={pos}>{pos}</option>)}
             </select>
         </label>
-</div>
-<div>filtrer par club : 
-<label className="form-label" id="name">
+<label className="form-label" id="name">filtrer par club : 
         <input className="form-input"
             id="club"
             name="club"
@@ -72,16 +64,18 @@ const AllPlayersDisplay = ({playersList, getPlayers, positions}) => {
             value={filter.club} 
             onChange={handleFilter} />
         </label>
-</div>
-<button onClick={applyFilters}>Appliquer les filtres</button>
-<div><button onClick={resetFilters}>Réinitialiser</button></div>
-<div><button onClick={showCollection}>{ filteredPlayersList === null ? 'Afficher la collection' : 'Masquer la collection'}</button></div>
-
-
+        <button onClick={applyFilters}
+onSubmit={applyFilters}>Appliquer les filtres</button>
+</form>
+<div>
+    <button onClick={resetFilters}>Réinitialiser</button>
+    </div>
+<div>
+    <button onClick={showCollection}>{ filteredPlayersList === null ? 'Afficher la collection' : 'Masquer la collection'}</button>
+    </div>
 <div className="card-displayer">
-
-
- {filteredPlayersList !== null ?  filteredPlayersList.map((e,i)=> <OnePlayerCard data={e.player} _id={e._id} getPlayers={getPlayers} filter={sentFilter}  />) : null}
+ {filteredPlayersList !== null ?  filteredPlayersList.map((e,i)=>
+  <OnePlayerCard data={e.player} _id={e._id} getPlayers={getPlayers}/>) : null}
 </div>
 </>
     )

@@ -11,9 +11,10 @@ const defaultPlayer = {
 }
 
 const Form = ({getPlayers, positions})=> {
+
     const [player, setPlayer] = useState(defaultPlayer)
     const [message, setMessage] = useState("")
-const handleChange =(e)=>{
+    const handleChange =(e)=>{
     const { name, value } = e.target;
     setPlayer(prevState => ({
                 ...prevState,
@@ -23,12 +24,9 @@ const handleChange =(e)=>{
 }
 const handleSubmit = (e) => {
     e.preventDefault()
-    
     const playerToSend = player
-    
     const clubsArray = player.clubs.split(',')
     playerToSend.clubs = clubsArray
-
     axios
       .post('http://localhost:5000/', {player})
       .then(res => {

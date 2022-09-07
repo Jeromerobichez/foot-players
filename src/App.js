@@ -22,8 +22,7 @@ function App() {
 }
   useEffect(() => {
     getPlayers()
-  
-  }, []);
+  },[]);
 
   const positions = [
     "",
@@ -35,13 +34,12 @@ function App() {
     "ailier",
     "attaquant"
  ]
-
-  console.log('playersList in app', playersList)
   return (
     <div className="App">
       <h1>Football players collection </h1>
-      <AllPlayersDisplay playersList={playersList} getPlayers={getPlayers} positions={positions} />
       <Form getPlayers={getPlayers} positions={positions} />
+     
+      <AllPlayersDisplay playersList={playersList} getPlayers={getPlayers} positions={positions} />
      
     </div>
   );
