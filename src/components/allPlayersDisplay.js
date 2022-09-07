@@ -11,7 +11,6 @@ const AllPlayersDisplay = ({playersList, getPlayers, positions}) => {
     const [filter, setFilter] = useState(initialFilter) // intial filter to avoid the problem of undefined.map when the compo mounts
     const [filteredPlayersList, setFilteredPlayersList] = useState(null)
 
-    console.log("ser",playersList)
 // to collect the data to filter 
     const handleFilter = (e) => {
         e.preventDefault()
@@ -34,7 +33,7 @@ const AllPlayersDisplay = ({playersList, getPlayers, positions}) => {
    // to stock the filter in the state and modify the cards which are displayed
     const applyFilters = (e) => {
         e.preventDefault()
-        let workableList = filter.position !== "" ?(playersList.filter(player => player.player.position === filter.position)) : playersList
+        let workableList = filter.position !== "" && playersList !== null ?(playersList.filter(player => player.player.position === filter.position)) : playersList
 
         workableList= filter.club !== "" ? (workableList.filter(player => player.player.clubs.includes(filter.club))) : workableList
         setFilteredPlayersList(workableList) 

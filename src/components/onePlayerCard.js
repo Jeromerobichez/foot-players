@@ -2,8 +2,6 @@ import './onePlayerCard.css'
 import axios from 'axios'
 
 const OnePlayerCard = ({data, _id, getPlayers}) => {
- 
-   console.log("data", data)
 
     const handleClick = (e) => {
       axios
@@ -11,10 +9,12 @@ const OnePlayerCard = ({data, _id, getPlayers}) => {
       .then(res => {
         console.log(res.data)
         getPlayers()
+       
       })
       .catch(e => {
        console.log(`Erreur lors de la suppression : ${e.message}`)
       })
+   
     }
 
  return (
