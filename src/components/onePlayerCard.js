@@ -18,6 +18,8 @@ const OnePlayerCard = ({data, _id, getPlayers}) => {
     }
 
  return (
+   <>
+   {data ? 
     <div className="player-card">
         <div>
          <div className='close-card'>
@@ -30,12 +32,13 @@ const OnePlayerCard = ({data, _id, getPlayers}) => {
         <div>{data.position}</div>
         <ul>
             Clubs : 
-      {data.clubs.map((club, i)=> 
+      {data.clubs ? data.clubs.map((club, i)=> 
        <li className='player-li'
-       key={i}>{club}</li>)} 
+       key={i}>{club}</li>): null} 
        </ul>
 
-    </div>
+    </div> : null }
+    </>
  )
 }
 export default OnePlayerCard;

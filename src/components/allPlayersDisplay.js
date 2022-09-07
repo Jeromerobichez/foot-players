@@ -11,6 +11,7 @@ const AllPlayersDisplay = ({playersList, getPlayers, positions}) => {
     const [filter, setFilter] = useState(initialFilter) // intial filter to avoid the problem of undefined.map when the compo mounts
     const [filteredPlayersList, setFilteredPlayersList] = useState(null)
 
+    console.log("ser",playersList)
 // to collect the data to filter 
     const handleFilter = (e) => {
         e.preventDefault()

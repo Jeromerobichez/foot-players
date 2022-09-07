@@ -11,7 +11,7 @@ function App() {
 
   const getPlayers = () => {
   axios
-  .get('http://localhost:https://football-back.osc-fr1.scalingo.io/')
+  .get('https://football-back.osc-fr1.scalingo.io/')
   .then(res => {
     setPlayersList(res.data)
   })
