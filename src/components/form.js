@@ -28,7 +28,7 @@ const handleSubmit = (e) => {
     const clubsArray = player.clubs.split(',')
     playerToSend.clubs = clubsArray
     axios
-      .post('http://localhost:5000/', {player})
+      .post('https://football-back.osc-fr1.scalingo.io/', {player})
       .then(res => {
         console.log(res.data)
         getPlayers()

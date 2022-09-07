@@ -7,7 +7,7 @@ const OnePlayerCard = ({data, _id, getPlayers}) => {
 
     const handleClick = (e) => {
       axios
-      .post(`http://localhost:5000/delete`, {_id} )
+      .post(`https://football-back.osc-fr1.scalingo.io/delete`, {_id} )
       .then(res => {
         console.log(res.data)
         getPlayers()
